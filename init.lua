@@ -280,12 +280,17 @@ require('lazy').setup({
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>c_', hidden = true },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>d_', hidden = true },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>r_', hidden = true },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>s_', hidden = true },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w_', hidden = true },
       }
     end,
   },
@@ -836,32 +841,32 @@ require('lazy').setup({
       { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>" },
     },
   },
-  {
-    'laytan/cloak.nvim',
-    require('cloak').setup {
-      {
-        enabled = true,
-        cloak_character = '*',
-        -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
-        highlight_group = 'Comment',
-        patterns = {
-          {
-            -- Match any file starting with ".env".
-            -- This can be a table to match multiple file patterns.
-            file_pattern = {
-              '.env*',
-              'wrangler.toml',
-              '.dev.vars',
-            },
-            -- Match an equals sign and any character after it.
-            -- This can also be a table of patterns to cloak,
-            -- example: cloak_pattern = { ":.+", "-.+" } for yaml files.
-            cloak_pattern = '=.+',
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   'laytan/cloak.nvim',
+  --   require('cloak').setup {
+  --     {
+  --       enabled = true,
+  --       cloak_character = '*',
+  --       -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
+  --       highlight_group = 'Comment',
+  --       patterns = {
+  --         {
+  --           -- Match any file starting with ".env".
+  --           -- This can be a table to match multiple file patterns.
+  --           file_pattern = {
+  --             '.env*',
+  --             'wrangler.toml',
+  --             '.dev.vars',
+  --           },
+  --           -- Match an equals sign and any character after it.
+  --           -- This can also be a table of patterns to cloak,
+  --           -- example: cloak_pattern = { ":.+", "-.+" } for yaml files.
+  --           cloak_pattern = '=.+',
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -904,7 +909,6 @@ require('lazy').setup({
   },
 })
 
-
 -- My keybinds
 
 -- Project View - Explorer
@@ -944,6 +948,6 @@ vim.keymap.set('n', '<leader>bp', '<cmd>bp<CR>')
 vim.keymap.set('n', '<C-h>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set('v', '<C-h>', [[y:%s/\<<C-r>0\>/<C-r>0/gI<Left><Left><Left>]])
 
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
